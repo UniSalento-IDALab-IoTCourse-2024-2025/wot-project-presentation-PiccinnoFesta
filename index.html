@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tremor Monitoring - Monitoraggio Parkinson</title>
+  <title>Tremor Monitoring - Parkinson's Disease</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
@@ -27,6 +27,15 @@
       scroll-behavior: smooth;
     }
 
+    .hidden {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     nav {
       position: sticky;
       top: 0;
@@ -54,60 +63,54 @@
     header {
       background: linear-gradient(135deg, #4f46e5, #818cf8);
       color: var(--text-light);
-      padding: 100px 20px;
+      padding: 120px 20px;
       text-align: center;
+      animation: fadeIn 1s ease-in;
     }
 
     header h1 {
-      font-size: 3em;
+      font-size: 3.5em;
       margin-bottom: 20px;
     }
 
     header p {
-      font-size: 1.2em;
-      max-width: 700px;
+      font-size: 1.3em;
+      max-width: 800px;
       margin: 0 auto;
     }
 
     section {
-      padding: 60px 20px;
+    border-radius: 25px; /* angoli smussati */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      padding: 100px 20px;
       max-width: 1200px;
-      margin: 0 auto;
+      margin: 40px auto;
+      background: #ffffff;
+      border: 1px solid #e0e0f0;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+      animation: slideUp 0.8s ease-in-out;
     }
 
     .section-title {
-      font-size: 2em;
+      font-size: 2.5em;
       color: var(--primary-color);
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       text-align: center;
     }
 
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-    }
-
-    .card {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-      padding: 30px;
-      max-width: 400px;
-      flex: 1 1 300px;
-      text-align: center;
-    }
-
-    .card i {
-      font-size: 40px;
-      color: var(--primary-color);
-      margin-bottom: 15px;
+    .section-content {
+      font-size: 1.2em;
+      line-height: 1.8;
+      text-align: justify;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .image-block {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+      animation: fadeIn 1.2s ease-in-out;
     }
 
     .image-block img {
@@ -116,12 +119,44 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .card {
+      border-radius: 25px; /* angoli smussati */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      padding: 30px;
+      max-width: 400px;
+      flex: 1 1 300px;
+      text-align: center;
+      border: 1px solid #ddd;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card i {
+      font-size: 40px;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+
     footer {
       background: #2e2e4d;
       color: white;
       text-align: center;
       padding: 30px;
       font-size: 0.9em;
+      animation: fadeIn 1s ease-in;
     }
 
     @media (max-width: 600px) {
@@ -130,90 +165,125 @@
         align-items: flex-start;
       }
     }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
   <nav>
     <div style="font-size: 1.4em; font-weight: bold;">Tremor Monitoring</div>
     <div>
-      <a href="#overview">Panoramica</a>
-      <a href="#features">Funzionalità</a>
+      <a href="#overview">Progetto</a>
       <a href="#architecture">Architettura</a>
+      <a href="#frontend">Frontend</a>
+      <a href="#backend">Backend</a>
+      <a href="#features">Funzionalità</a>
       <a href="#team">Team</a>
     </div>
   </nav>
 
   <header>
-    <h1>Monitoraggio Avanzato per il Parkinson</h1>
-    <p>Una piattaforma intelligente e discreta per il controllo continuo dei parametri clinici e comportamentali dei pazienti affetti da Parkinson.</p>
+    <h1>Tremor Monitoring</h1>
+    <p>Piattaforma per il monitoraggio a distanza dei pazienti affetti dal morbo di Parkinson</p>
   </header>
 
   <section id="overview">
-    <h2 class="section-title">Panoramica del Progetto</h2>
-    <div class="grid">
-      <div class="card">
-        <i class="fas fa-brain"></i>
-        <h3>Analisi Intelligente</h3>
-        <p>Algoritmi AI per riconoscere segnali di peggioramento motorio o cognitivo.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-clock"></i>
-        <h3>Monitoraggio Costante</h3>
-        <p>Acquisizione automatica di dati tramite dispositivi indossabili e smartphone.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-user-shield"></i>
-        <h3>Supporto ai Caregiver</h3>
-        <p>Allarmi personalizzati per favorire interventi rapidi e mirati.</p>
-      </div>
+    <h2 class="section-title">Il Progetto</h2>
+    <p class="section-content">
+      Tremor Monitoring è un sistema intelligente per il rilevamento continuo dei tremori e delle condizioni motorie nei pazienti affetti da Parkinson.
+      Il progetto si pone l'obiettivo di essere uno strumento per il personale sanitario specializzato, per ottenere statistiche sull'andamento della malattia
+      nel corso del tempo.
+      L'obiettivo principale è stato quello di realizzare un'applicazione il meno invasiva possibile per il paziente, e il quanto più indipendente possibile da una sua interazione.
+      Utilizzando lo <strong>smartwatch Google Pixel 2</strong> si è potuto recuperari i dati sensoriali relativi al movimento del braccio, e tramite un dispositivo gateway come il <strong>Raspberry Pi 5</strong> 
+      questi dati sono potuti essere trasmessi sfruttando il <strong>Bluetooth Low Energy (BLE)</strong> fino al cloud, dove un sistema di intelligenza artificiale
+      ha permesso di classificare il movimento del paziente.
+      Questi dati sono poi stati resi accessibile tramite frontend al personale medico, previa registrazione sulla piattaforma. 
+    </p>
+    <div class="image-block">
+      <img src="https://via.placeholder.com/1000x500?text=Presentazione+del+Progetto" alt="Presentazione progetto">
+    </div>
+  </section>
+
+ <section id="architecture" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: center;">
+  <div style="flex: 1 1 550px; min-width: 300px;">
+    <h2 class="section-title">Architettura</h2>
+    <p class="section-content">
+      L'architettura si basa su un sistema a microservizi, containerizzati con Docker e comunicanti tramite API RESTful. Il punto di accesso
+      per ogni richiesta è il servizio <strong>API GATEWAY</strong>, fornito da AWS, che si occupa dell'instradamento o di elaborazioni tramite il paradigma serverless e le <strong>Lambda functions</strong>:
+      <br><br>
+      - Backend basato sul framework SpringBoot in Java.<br>
+      - Modulo AI in Python per predizioni comportamentali;<br>
+      - Dati archiviati su MongoDB;<br>
+      - Frontend sviluppato in React Native.<br><br>
+      Tutti i servizi sono containerizzati con Docker e comunicano tramite API RESTful. L’infrastruttura è ospitata su AWS con gestione centralizzata tramite API Gateway.
+    </p>
+  </div>
+  <div class="image-block" style="flex: 1 1 400px; min-width: 280px;">
+    <img src="img/FullProject.png" alt="Architettura" />
+  </div>
+</section>
+  
+
+  <section id="frontend">
+    <h2 class="section-title">Frontend</h2>
+    <p class="section-content">
+      L'app mobile è sviluppata in React Native, progettata per dispositivi Android. Permette a pazienti e caregiver di visualizzare i parametri raccolti, ricevere notifiche e gestire il profilo utente. Il layout è semplice, accessibile e ottimizzato per l'uso quotidiano.
+    </p>
+    <div class="image-block">
+      <img src="https://via.placeholder.com/800x400?text=App+Mobile" alt="App Mobile">
+    </div>
+  </section>
+
+  <section id="backend">
+    <h2 class="section-title">Backend</h2>
+    <p class="section-content">
+      Il backend è composto da microservizi Java Spring Boot. Il modulo AI, scritto in Python, processa i dati ricevuti e produce predizioni. È presente un gateway API centralizzato, comunicazioni asincrone via RabbitMQ e sistema notifiche push via Firebase.
+    </p>
+    <div class="image-block">
+      <img src="https://via.placeholder.com/900x400?text=Schema+Backend" alt="Backend Schema">
     </div>
   </section>
 
   <section id="features">
-    <h2 class="section-title">Funzionalità Principali</h2>
-    <div class="grid">
-      <div class="card">
-        <i class="fas fa-user-lock"></i>
-        <p>Login sicuro per pazienti e caregiver</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-heartbeat"></i>
-        <p>Monitoraggio della frequenza cardiaca e rigidità motoria</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-map-marked-alt"></i>
-        <p>Tracciamento della mobilità e attività giornaliera</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-bell"></i>
-        <p>Notifiche automatiche in caso di anomalie rilevate</p>
-      </div>
-    </div>
+    <h2 class="section-title">Funzionalità</h2>
+    <p class="section-content">
+      Il sistema include login sicuro, dashboard utente con visualizzazione dati, notifiche personalizzate, supporto per caregiver, e tracciamento storico dei tremori per consulti clinici. Ogni componente è pensato per migliorare la qualità della vita del paziente.
+    </p>
     <div class="image-block">
-      <img src="https://via.placeholder.com/800x400?text=Immagine+App+o+Dashboard" alt="Dashboard" />
-    </div>
-  </section>
-
-  <section id="architecture">
-    <h2 class="section-title">Architettura del Sistema</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto;">Il sistema è composto da microservizi scalabili, AI backend, e app React Native per la raccolta dati. Comunicazioni tramite MQTT, Firebase per notifiche, e infrastruttura su AWS.</p>
-    <div class="image-block">
-      <img src="https://via.placeholder.com/900x500?text=Diagramma+Architettura" alt="Architettura" />
+      <img src="https://via.placeholder.com/900x400?text=Dashboard+Utente" alt="Funzionalità Dashboard">
     </div>
   </section>
 
   <section id="team">
-    <h2 class="section-title">Il Team</h2>
-    <div class="grid">
+    <h2 class="section-title">Team</h2>
+    <div class="team-grid">
       <div class="card">
         <h3>Francesco Piccinno</h3>
         <p>Email: francesco.piccinno2@studenti.unisalento.it</p>
-        <p>GitHub: <a href="https://github.com/FrancescoPiccinno54" target="_blank">Letsgosky7</a></p>
+        <p>GitHub: <a href="https://github.com/FrancescoPiccinno54" target="_blank">FrancescoPiccinno54</a></p>
       </div>
       <div class="card">
         <h3>Francesco Festa</h3>
         <p>Email: francesco.festa@studenti.unisalento.it</p>
-        <p>GitHub: <a href="githubFrancescoFesta" target="_blank">desss2</a></p>
+        <p>GitHub: <a href="#" target="_blank">githubFrancescoFesta</a></p>
       </div>
     </div>
   </section>
@@ -221,6 +291,23 @@
   <footer>
     &copy; 2025 Tremor Monitoring - Università del Salento
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
 
+      sections.forEach(sec => {
+        sec.classList.add('hidden');
+        observer.observe(sec);
+      });
+    });
+  </script>
 </body>
 </html>
