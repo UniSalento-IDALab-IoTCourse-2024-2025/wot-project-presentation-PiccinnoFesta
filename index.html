@@ -1,403 +1,226 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<title>Presentazione TremorMonitor</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-<style>
-  body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #d0f0ec, #a6e3d6);
-    scroll-behavior: smooth;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tremor Monitoring - Monitoraggio Parkinson</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --primary-color: #4f46e5;
+      --bg-light: #f4f4ff;
+      --text-dark: #1e1e2f;
+      --text-light: #ffffff;
+    }
 
-  nav {
-  position: sticky;
-  top: 0;
-  background-image: url('https://raw.githubusercontent.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-Presentation-PizzolanteCioffi/main/IMAGE%202025-07-01%2019%3A22%3A13.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: rgba(255, 255, 255, 0.25);
-  backdrop-filter: saturate(180%) blur(30px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  
-  height: 150px;
-  padding: 0 20px 20px 20px;
-  
-  transition: height 0.3s ease, padding 0.3s ease, background-color 0.3s ease, backdrop-filter 0.3s ease, background-image 0.3s ease;
-  z-index: 1000;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-nav.shrink {
-  height: 34px;             /* Altezza esatta dei pulsanti */
-  padding: 0;               /* Nessun padding per non aggiungere altezza */
-  background-image: none;
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: none;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.08);
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      scroll-behavior: smooth;
+    }
 
-
-  /* Stato piccolo navbar dopo scroll */
-  nav.shrink {
-    height: 60px;               /* altezza ridotta */
-    padding-bottom: 5px;
-  }
-
-  nav a {
-    color: #2a9d8f;
-    font-weight: 600;
-    text-decoration: none;
-    font-size: 1.1em;
-    padding: 8px 15px;
-    border-radius: 30px;
-    background-color: rgba(255, 255, 255, 0.85);
-    transition: background-color 0.3s, color 0.3s;
-    user-select: none;
-  }
-
-  nav a:hover {
-    background-color: #3ba99c;
-    color: white;
-  }
-
-  /* Wrapper più largo */
-  .wrapper {
-    max-width: 95vw;
-    margin: 40px auto 80px;
-    padding: 0 10px;
-  }
- .container {
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    text-align: center;
-    padding: 40px 50px;
-    margin-bottom: 40px;
-    max-width: 100%; /* container largo */
-    box-sizing: border-box;
-  }
-
-  .container h1 {
-    color: #2a9d8f;
-    font-size: 2em;
-    margin-bottom: 15px;
-    text-align: left;
-
-  }
-
-  .container p {
-    color: #444;
-    font-size: 1.1em;
-    line-height: 1.5;
-    text-align: left;
-  }
-
-  .icon {
-    font-size: 50px;
-    color: #3ba99c;
-    margin-bottom: 25px;
-  }
-
-  /* Layout Progetto: testo e immagine affiancati */
-  #progetto > div {
-    display: flex;
-    align-items: flex-start;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  #progetto > div > div {
-    box-sizing: border-box;
-  }
-
-  #progetto .testo {
-    flex: 1 1 600px;
-    min-width: 320px;
-    text-align: left;
-  }
-
-  #progetto .immagine {
-    flex: 0 0 300px;
-    text-align: center;
-  }
-
- #progetto img {
-  max-width: 100%;
-  max-height: 320px; /* un po' più grande */
-  opacity: 1;         /* niente trasparenza */
-  border-radius: 0;
-  box-shadow: none;
-  margin-top: 15px;
-  object-fit: contain;
-}
-
-
-  /* Centrare e dimensionare immagine architettura */
-  #architettura img {
-    max-width: 90vw;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  }
-
-  /* Lista architettura */
-  #architettura ul {
-    text-align: left;
-    max-width: 700px;
-    margin: 0 auto 20px auto;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
     nav {
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .container {
-      padding: 30px 20px;
-    }
-
-    #progetto > div {
-      flex-direction: column;
+      position: sticky;
+      top: 0;
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      display: flex;
+      justify-content: space-between;
       align-items: center;
+      padding: 20px 40px;
+      color: white;
+      z-index: 999;
     }
 
-    #progetto .testo,
-    #progetto .immagine {
-      flex: 1 1 100%;
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 20px;
+      transition: opacity 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 0.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4f46e5, #818cf8);
+      color: var(--text-light);
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2em;
+      color: var(--primary-color);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      padding: 30px;
+      max-width: 400px;
+      flex: 1 1 300px;
+      text-align: center;
+    }
+
+    .card i {
+      font-size: 40px;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+
+    .image-block {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .image-block img {
       max-width: 100%;
-      text-align: center !important;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
-    #progetto .testo p {
-      text-align: center !important;
+    footer {
+      background: #2e2e4d;
+      color: white;
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9em;
     }
-  } 
 
-</style>
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<nav id="navbar">
-<a href="#" style="margin-right: auto; font-size: 1.4em; font-weight: 600;">WatchApp</a>
-  <a href="#progetto">Progetto</a>
-  <a href="#architettura">Architettura</a>
-  <a href="#funzionalita">Funzionalità</a>
-  <a href="#demo">Demo</a>
-  <a href="#frontend">Frontend</a>
-  <a href="#backend">Backend</a>
-</nav>
-
-<div class="wrapper">
-
-
-  <section id="progetto" class="container">
+  <nav>
+    <div style="font-size: 1.4em; font-weight: bold;">Tremor Monitoring</div>
     <div>
-      <div class="testo">
-        <div class="icon"><i class="fas fa-rocket"></i></div>
-        <h1>Progetto</h1>
-      <p>
-   SkibidiBoppi stema <strong>intelligente</strong> e <strong>non invasivo</strong> per il monitoraggio continuo di pazienti affetti da <strong>malattie neurodegenerative</strong>, come Alzheimer, Parkinson e SLA.
-  </p>
-
-  <p>
-    Utilizzando lo <strong>smartwatch Google Pixel Watch 2</strong>, il sistema rileva automaticamente parametri vitali e comportamentali, tra cui <strong>frequenza cardiaca</strong>, <strong>durata del sonno</strong>, <strong>tempo trascorso fuori casa</strong> e <strong>minuti di conversazione telefonica</strong>.
-  </p>
-
-  <p>
-    I dati vengono trasmessi allo smartphone Android del paziente tramite <strong>Bluetooth Low Energy (BLE)</strong> e da lì inviati al <strong>backend cloud</strong>, dove sono analizzati da <strong>algoritmi di intelligenza artificiale</strong> per rilevare segnali di deterioramento sociale.
-  </p>
-
-  <p>
-    In caso di comportamenti anomali, il sistema invia notifiche personalizzate al paziente e, se necessario, al <strong>caregiver</strong>, favorendo interventi tempestivi e mirati.
-  </p>
-      </div>
-      <div class="immagine">
-        <img src="https://raw.githubusercontent.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-Presentation-PizzolanteCioffi/main/smartWatch.jpg" alt="Google Pixel Watch 2" />
-      </div>
+      <a href="#overview">Panoramica</a>
+      <a href="#features">Funzionalità</a>
+      <a href="#architecture">Architettura</a>
+      <a href="#team">Team</a>
     </div>
-  </section>
-  
-  
-  <section id="progetto" class="container">
-    <div>
-      <div class="testo">
-        <div class="icon"><i class="fas fa-rocket"></i></div>
-        <h1>Architettura</h1>
-      <p>
-        Il sistema monitora la condizione sociale dell’utente, inviando notifiche tempestive a pazienti e caregiver in caso di anomalie comportamentali.
-      </p>
-      <ul>
-        <li>Backend basato su Java con Spring Boot;</li>
-        <li>Modulo AI in Python per predizioni comportamentali;</li>
-        <li>Dati archiviati su MongoDB;</li>
-        <li>Frontend sviluppato in React Native.</li>
-      </ul>
-      <p>
-        Tutti i servizi sono containerizzati con Docker e comunicano tramite API RESTful. L’infrastruttura è ospitata su AWS con gestione centralizzata tramite API Gateway.
-      </p>
+  </nav>
+
+  <header>
+    <h1>Monitoraggio Avanzato per il Parkinson</h1>
+    <p>Una piattaforma intelligente e discreta per il controllo continuo dei parametri clinici e comportamentali dei pazienti affetti da Parkinson.</p>
+  </header>
+
+  <section id="overview">
+    <h2 class="section-title">Panoramica del Progetto</h2>
+    <div class="grid">
+      <div class="card">
+        <i class="fas fa-brain"></i>
+        <h3>Analisi Intelligente</h3>
+        <p>Algoritmi AI per riconoscere segnali di peggioramento motorio o cognitivo.</p>
       </div>
-      <div class="immagine">
-      <img src="https://github.com/user-attachments/assets/e789da38-c2d2-4d80-9cba-3dfba9060f5c" alt="Architettura del sistema"/>
+      <div class="card">
+        <i class="fas fa-clock"></i>
+        <h3>Monitoraggio Costante</h3>
+        <p>Acquisizione automatica di dati tramite dispositivi indossabili e smartphone.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-user-shield"></i>
+        <h3>Supporto ai Caregiver</h3>
+        <p>Allarmi personalizzati per favorire interventi rapidi e mirati.</p>
       </div>
     </div>
   </section>
 
-
-
- <section id="funzionalita" class="container">
-  <div style="display: flex; gap: 30px; flex-wrap: wrap; align-items: flex-start; justify-content: center;">
-    <!-- Testo a sinistra -->
-    <div style="flex: 1 1 400px; min-width: 280px; text-align: center;">
-      <div class="icon"><i class="fas fa-cogs"></i></div>
-      <h1>Funzionalità</h1>
-      <ul style="list-style-position: inside; padding-left: 0; display: inline-block; text-align: left; margin: 0 auto;">
-        <li><strong>Login sicuro</strong> per l’accesso personalizzato al sistema.</li>
-        <li><strong>Visualizzazione dati giornalieri</strong>: aggiornamento in tempo reale dei parametri vitali e comportamentali del paziente per la giornata corrente.</li>
-        <li><strong>Modifica profilo</strong>: possibilità di aggiornare le informazioni personali e le preferenze utente.</li>
-        <li><strong>Monitoraggio comportamentale</strong>: analisi dettagliata dei dati comportamentali del paziente con suggerimenti personalizzati per pazienti e caregiver.</li>
-        <li><strong>Notifiche personalizzate</strong> per avvisare pazienti e caregiver in caso di anomalie comportamentali rilevate.</li>
-        <li><strong>Invio email</strong> automatizzato a seguito della registrazione</li>
-      </ul>
+  <section id="features">
+    <h2 class="section-title">Funzionalità Principali</h2>
+    <div class="grid">
+      <div class="card">
+        <i class="fas fa-user-lock"></i>
+        <p>Login sicuro per pazienti e caregiver</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-heartbeat"></i>
+        <p>Monitoraggio della frequenza cardiaca e rigidità motoria</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-map-marked-alt"></i>
+        <p>Tracciamento della mobilità e attività giornaliera</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-bell"></i>
+        <p>Notifiche automatiche in caso di anomalie rilevate</p>
+      </div>
     </div>
-
-    <!-- Immagine + freccette a destra -->
-	<div style="flex: 0 0 280px; position: relative; text-align: center; height: 300px; background: white; box-shadow: none; padding: 0; border-radius: 0;">
-      <img id="funzionalita-img" src="https://raw.githubusercontent.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-Presentation-PizzolanteCioffi/main/Login.jpg" alt="Immagine funzionalità" style="width: 100%; max-width: 280px; border-radius: 0; box-shadow: none; height: 100%; object-fit: contain;" />
-      <button id="prev-btn" aria-label="Immagine precedente" style="position: absolute; top: 50%; left: 5px; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 20px; user-select: none;">&#8592;</button>
-      <button id="next-btn" aria-label="Immagine successiva" style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 20px; user-select: none;">&#8594;</button>
+    <div class="image-block">
+      <img src="https://via.placeholder.com/800x400?text=Immagine+App+o+Dashboard" alt="Dashboard" />
     </div>
-
-  </div>
-</section>
-
-
-<script>
-  const images = [
-  "https://raw.githubusercontent.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-Presentation-PizzolanteCioffi/main/Login.jpg",
-  "https://raw.githubusercontent.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-Presentation-PizzolanteCioffi/main/Visualizza%20Profilo.jpg",
-  "https://raw.githubusercontent.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-Presentation-PizzolanteCioffi/main/profile1.jpg",
-  "https://raw.githubusercontent.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-Presentation-PizzolanteCioffi/main/badBehaviour.jpg",
-  "https://raw.githubusercontent.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-Presentation-PizzolanteCioffi/main/middleBehaviour.jpg",
-  "https://raw.githubusercontent.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-Presentation-PizzolanteCioffi/main/goodBehaviour.jpg",
-  "https://raw.githubusercontent.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-Presentation-PizzolanteCioffi/main/email.jpg",
-  "https://raw.githubusercontent.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-Presentation-PizzolanteCioffi/main/notification.jpg"
-];
-
-
-  let currentIndex = 0;
-
-  const imgElement = document.getElementById('funzionalita-img');
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    imgElement.src = images[currentIndex];
-  });
-
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % images.length;
-    imgElement.src = images[currentIndex];
-  });
-</script>
-
-
-    <section id="team" class="container">
-  <div class="icon" style="text-align: center; margin: 0 auto;"><i class="fas fa-users"></i></div>
-<h1 style="text-align: center; margin: 0 auto;">Demo</h1>
-  <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; max-width: 900px; margin: 0 auto;">
-    <p>Presentazione pratica delle funzionalità e visualizzazione dati in tempo reale tramite app dedicata.</p>
-    <iframe 
-    src="https://drive.google.com/file/d/1gAzSqV1K1sRV3J0Rtrdz-HQJmX1fOC_A/preview" 
-    width="640" 
-    height="360" 
-    allow="autoplay" 
-    allowfullscreen>
-  </iframe>
-
   </section>
 
-  <section id="frontend" class="container">
-    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
-    <h1>Frontend</h1>
-   <p>
-Il frontend è sviluppato con <strong>React Native</strong> e opera su dispositivi <strong>Android</strong>, necessario per accedere al log delle chiamate. L’app consente di visualizzare in tempo reale i dati raccolti durante la giornata (frequenza cardiaca, ore di sonno, posizione, durata chiamata), mostra il comportamento del paziente e invia notifiche sia a pazienti che, se necessario, agli assistenti.
-</p>
-
+  <section id="architecture">
+    <h2 class="section-title">Architettura del Sistema</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto;">Il sistema è composto da microservizi scalabili, AI backend, e app React Native per la raccolta dati. Comunicazioni tramite MQTT, Firebase per notifiche, e infrastruttura su AWS.</p>
+    <div class="image-block">
+      <img src="https://via.placeholder.com/900x500?text=Diagramma+Architettura" alt="Architettura" />
+    </div>
   </section>
 
-  <section id="backend" class="container">
-    <div class="icon"><i class="fas fa-server"></i></div>
-    <h1>Backend</h1>
-   <p>
-Il backend è strutturato in microservizi indipendenti per la gestione utenti, raccolta dati, predizioni AI, notifiche e il <strong>modello di intelligenza artificiale</strong>. Tutti i servizi sono sviluppati con <strong>Spring Boot</strong>, ad eccezione del modello AI, e sono <strong>containerizzati</strong> per facilitare la scalabilità e il deployment. I microservizi sono distribuiti su macchine <strong>EC2</strong> e comunicano tramite <strong>API</strong> esposte da un <strong>gateway centralizzato</strong>. Per la comunicazione asincrona si utilizza <strong>RabbitMQ</strong> con protocollo <strong>MQTT</strong>, mentre il microservizio notifiche si occupa dell’invio di notifiche push agli utenti tramite <strong>Firebase</strong> e dell'invio di email in seguito alla registrazione.
-</p>
+  <section id="team">
+    <h2 class="section-title">Il Team</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Francesco Piccinno</h3>
+        <p>Email: francesco.piccinno2@studenti.unisalento.it</p>
+        <p>GitHub: <a href="https://github.com/FrancescoPiccinno54" target="_blank">Letsgosky7</a></p>
+      </div>
+      <div class="card">
+        <h3>Francesco Festa</h3>
+        <p>Email: francesco.festa@studenti.unisalento.it</p>
+        <p>GitHub: <a href="githubFrancescoFesta" target="_blank">desss2</a></p>
+      </div>
+    </div>
   </section>
-  
-  <section id="demo" class="container">
- <div class="icon" style="text-align: center; margin: 0 auto;"><i class="fas fa-users"></i></div>
-<h1 style="text-align: center; margin: 0 auto;">Github</h1>
-  <p style="text-align: center;">
-    Ecco i repository principali del progetto:<br />
-    • <a href="https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-User-PizzolanteCioffi" target="_blank" rel="noopener" style="color: #2a9d8f;">User Service</a><br />
-    • <a href="https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-DataCollector-PizzolanteCioffi" target="_blank" rel="noopener" style="color: #2a9d8f;">DataCollector Service</a><br />
-    • <a href="https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-DataPrediction-PizzolanteCioffi" target="_blank" rel="noopener" style="color: #2a9d8f;">DataPrediction Service</a><br />
-    • <a href="https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-AIModel-PizzolanteCioffi" target="_blank" rel="noopener" style="color: #2a9d8f;">AIModel Service</a><br />
-    • <a href="https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-2024-2025-Frontend-PizzolanteCioffi" target="_blank" rel="noopener" style="color: #2a9d8f;">FrontEnd</a>
-  </p>
-</section>
 
-<section id="team" class="container">
-  <div class="icon" style="text-align: center; margin: 0 auto;"><i class="fas fa-users"></i></div>
-<h1 style="text-align: center; margin: 0 auto;">Team</h1>
-  <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; max-width: 900px; margin: 0 auto;">
-    
-    <div style="background: #f0f7f5; padding: 20px; border-radius: 15px; box-shadow: 0 6px 15px rgba(0,0,0,0.1); width: 380px; text-align: center; white-space: nowrap; overflow-x: auto;">
-      <p><strong>Nome:</strong> Andrea</p>
-      <p><strong>Cognome:</strong> Cioffi</p>
-      <p><strong>Email:</strong> <a href="mailto:andrea.cioffi1@studenti.unisalento.it" style="color: #2a9d8f; text-decoration: none;">andrea.cioffi1@studenti.unisalento.it</a></p>
-      <p><strong>Github:</strong> <a href="https://github.com/Letsgosky7" target="_blank" rel="noopener" style="color: #2a9d8f; text-decoration: none;">https://github.com/Letsgosky7</a></p>
-      <p><strong>Telefono:</strong> <a href="tel:+393279387941" style="color: #2a9d8f; text-decoration: none;">+39 3279387941</a></p>
-    </div>
-
-    <div style="background: #f0f7f5; padding: 20px; border-radius: 15px; box-shadow: 0 6px 15px rgba(0,0,0,0.1); width: 410px; text-align: center; white-space: nowrap; overflow-x: auto;">
-      <p><strong>Nome:</strong> Desiree</p>
-      <p><strong>Cognome:</strong> Pizzolante</p>
-      <p><strong>Email:</strong> <a href="mailto:desiree.pizzolante@studenti.unisalento.it" style="color: #2a9d8f; text-decoration: none;">desiree.pizzolante@studenti.unisalento.it</a></p>
-      <p><strong>Github:</strong> <a href="https://github.com/desss2" target="_blank" rel="noopener" style="color: #2a9d8f; text-decoration: none;">https://github.com/desss2</a></p>
-      <p><strong>Telefono:</strong> <a href="tel:+393930613988" style="color: #2a9d8f; text-decoration: none;">+39 3930613988</a></p>
-    </div>
-    
-  </div>
-</section>
-
-
-
-
-
-</div>
-
-<script>
-// Quando scrolli, aggiungi/rimuovi la classe 'shrink' sulla navbar
-window.addEventListener('scroll', function() {
-  const nav = document.getElementById('navbar');
-  if (window.scrollY > 50) {
-    nav.classList.add('shrink');
-  } else {
-    nav.classList.remove('shrink');
-  }
-});
-</script>
+  <footer>
+    &copy; 2025 Tremor Monitoring - Università del Salento
+  </footer>
 
 </body>
 </html>
