@@ -208,12 +208,12 @@
   <section id="overview">
     <h2 class="section-title">Il Progetto</h2>
     <p class="section-content">
-      Tremor Monitoring è un sistema intelligente per il rilevamento continuo dei tremori e delle condizioni motorie nei pazienti affetti da Parkinson.
+      Tremor Monitoring è un sistema intelligente per il rilevamento continuo dei tremori  nei pazienti affetti da Parkinson.
       Il progetto si pone l'obiettivo di essere uno strumento per il personale sanitario specializzato, per ottenere statistiche sull'andamento della malattia
       nel corso del tempo.
       L'obiettivo principale è stato quello di realizzare un'applicazione il meno invasiva possibile per il paziente, e il quanto più indipendente possibile da una sua interazione.
-      Utilizzando lo <strong>smartwatch Google Pixel 2</strong> si è potuto recuperari i dati sensoriali relativi al movimento del braccio, e tramite un dispositivo gateway come il <strong>Raspberry Pi 5</strong> 
-      questi dati sono potuti essere trasmessi sfruttando il <strong>Bluetooth Low Energy (BLE)</strong> fino al cloud, dove un sistema di intelligenza artificiale
+      Utilizzando lo <strong>smartwatch Google Pixel 2</strong> si è potuto recuperare i dati sensoriali relativi al movimento del braccio, e tramite un dispositivo gateway come il <strong>Raspberry Pi 5</strong> 
+      questi dati sono stati trasmessi sfruttando il <strong>Bluetooth Low Energy (BLE)</strong> fino al cloud, dove un sistema di intelligenza artificiale
       ha permesso di classificare il movimento del paziente.
       Questi dati sono poi stati resi accessibile tramite frontend al personale medico, previa registrazione sulla piattaforma. 
     </p>
@@ -230,47 +230,66 @@
       per ogni richiesta è il servizio <strong>API GATEWAY</strong>, fornito da AWS, che si occupa dell'instradamento o di elaborazioni tramite il paradigma serverless e le <strong>Lambda functions</strong>:
       <br><br>
       - Backend basato sul framework SpringBoot in Java.<br>
-      - Modulo AI in Python per predizioni comportamentali;<br>
-      - Dati archiviati su MongoDB;<br>
-      - Frontend sviluppato in React Native.<br><br>
-      Tutti i servizi sono containerizzati con Docker e comunicano tramite API RESTful. L’infrastruttura è ospitata su AWS con gestione centralizzata tramite API Gateway.
+      - Microservizio per la classificazione del tremore tramite l'uso dell'intelligenza artificiale<br>
+      - Dati archiviati su MongoDB e S3;<br>
+      - Frontend sviluppato in React+Vite<br><br>
     </p>
   </div>
   <div class="image-block" style="flex: 1 1 400px; min-width: 280px;">
     <img src="img/FullProject.png" alt="Architettura" />
   </div>
 </section>
-  
 
-  <section id="frontend">
-    <h2 class="section-title">Frontend</h2>
-    <p class="section-content">
-      L'app mobile è sviluppata in React Native, progettata per dispositivi Android. Permette a pazienti e caregiver di visualizzare i parametri raccolti, ricevere notifiche e gestire il profilo utente. Il layout è semplice, accessibile e ottimizzato per l'uso quotidiano.
-    </p>
-    <div class="image-block">
-      <img src="https://via.placeholder.com/800x400?text=App+Mobile" alt="App Mobile">
-    </div>
-  </section>
-
-  <section id="backend">
-    <h2 class="section-title">Backend</h2>
-    <p class="section-content">
-      Il backend è composto da microservizi Java Spring Boot. Il modulo AI, scritto in Python, processa i dati ricevuti e produce predizioni. È presente un gateway API centralizzato, comunicazioni asincrone via RabbitMQ e sistema notifiche push via Firebase.
-    </p>
-    <div class="image-block">
-      <img src="https://via.placeholder.com/900x400?text=Schema+Backend" alt="Backend Schema">
-    </div>
-  </section>
-
-  <section id="features">
+   <section id="features">
     <h2 class="section-title">Funzionalità</h2>
     <p class="section-content">
-      Il sistema include login sicuro, dashboard utente con visualizzazione dati, notifiche personalizzate, supporto per caregiver, e tracciamento storico dei tremori per consulti clinici. Ogni componente è pensato per migliorare la qualità della vita del paziente.
+      Il sistema include login sicuro, una dashboard per visualizzare i pazienti nel sistema, un' interfaccia di controllo per monitorare l'installazione del dispositivo, 
+      e il tracciamento dello storico dei tremori per assistere la diagnosi.
+      Ogni componente è pensato per fornire supporto al medico durante la sua attività lavorativa, lasciando un determinato grado di libertà
+      nella gestione del paziente
     </p>
     <div class="image-block">
       <img src="https://via.placeholder.com/900x400?text=Dashboard+Utente" alt="Funzionalità Dashboard">
     </div>
   </section>
+
+  <section id="frontend">
+    <h2 class="section-title">Frontend</h2>
+    <p class="section-content">
+      L'interfaccia web è stata sviluppata usando React+Vite e distribuita tramite un'istanza sul cloud.
+      Questa permette al medico di visualizzare i parametri relativi ai pazienti, visualizzarne la cartella clinica e eventualmente aggiornarla.
+      Permette inoltre l'aggiunta/rimozione del paziente dal sistema e il monitoraggio dello stato di installazione del dispositivo nell'abitazione
+    </p>
+  
+  </section>
+
+  <section id="backend">
+    <h2 class="section-title">Backend</h2>
+    <p class="section-content">
+      Il backend è composto da 2 microservizi principali, entrambi containerizzati e deployati su architettura cloud:
+      -<strong>User Service</strong>: dedicato alla gestione di pazienti e dottori all'interno del database
+      -<strong>Tremor Analisys</strong>: dedicato all'elaborazione dei dati sensoriali, tramite l'utilizzo di algoritmi di intelligenza artificiale
+      La comunicazione a questi 2 servizi infine è gestita dal servizio AWS di API GATEWAY.
+
+    </p>
+  </section>
+
+ 
+
+
+
+  <section id="backend">
+    <h2 class="section-title">Github</h2>
+    <p class="section-content">
+    Repository  del progetto:<br />
+    • <a href="https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-UserService-PiccinnoFesta" target="_blank" rel="noopener" style="color: #2a9d8f;">User Service</a><br />
+    • <a href="https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-smartwatch-PiccinnoFesta" target="_blank" rel="noopener" style="color: #2a9d8f;">SmartWatchService</a><br />
+    • <a href="https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-BLEserver-PiccinnoFesta" target="_blank" rel="noopener" style="color: #2a9d8f;">Raspberry BLE Server</a><br />
+    • <a href="https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-TremorAnalysis-PiccinnoFesta" target="_blank" rel="noopener" style="color: #2a9d8f;">Tremor Analisys AI</a><br />
+    • <a href="https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-Frontend-PiccinnoFesta" target="_blank" rel="noopener" style="color: #2a9d8f;">FrontEnd</a>
+  </p>
+</section>
+
 
   <section id="team">
     <h2 class="section-title">Team</h2>
